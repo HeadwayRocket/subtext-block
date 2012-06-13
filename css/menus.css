@@ -1,0 +1,97 @@
+/* Navigation */
+.block-type-subtext-navigation {
+overflow: visible;
+}
+.block-type-subtext-navigation ul {
+width: 100%;
+display: inline-block; /* gap workaround */
+letter-spacing: -4px;
+word-spacing: -4px;
+}
+.block-type-subtext-navigation ul li {
+display: inline-block; /* gap workaround */
+letter-spacing: normal;
+word-spacing: normal;
+}
+.block-type-subtext-navigation ul li a { 
+display: block;
+width: auto;
+padding: 0 15px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+white-space: nowrap;
+}
+
+/* Navigation Alignment */
+.block-type-subtext-navigation .nav-align-left ul { text-align: left;   }
+.block-type-subtext-navigation .nav-align-right ul { text-align: right;  }
+.block-type-subtext-navigation .nav-align-center ul { text-align: center; }
+
+/* Vertical Orientation */
+.block-type-subtext-navigation .nav-vertical {
+position: relative;
+}
+.block-type-subtext-navigation .nav-vertical ul li {
+width: 100%;
+}
+.block-type-subtext-navigation .nav-vertical ul li a {
+height: auto;
+line-height: 40px;
+}
+
+/* Navigation Search */
+.block-type-subtext-navigation .nav-search-active ul {
+width: 75%;
+}
+.block-type-subtext-navigation .nav-search-active .nav-search {
+float: right;
+width: 22.5%;
+padding: 0 10px;
+display: table;
+}
+.block-type-subtext-navigation .nav-search-active.nav-search-position-left .nav-search {
+float: left;
+}
+.block-type-subtext-navigation .nav-search-active #searchform {
+height: 100%;
+display: table-cell;
+vertical-align: middle;
+}
+.block-type-subtext-navigation .nav-search-active #searchform label, 
+.block-type-subtext-navigation .nav-search-active #searchform input#searchsubmit {
+display: none;
+}
+.block-type-subtext-navigation .nav-search-active #searchform input#s {
+width: 100%;
+}
+
+/* Sub Menus */
+.block-type-subtext-navigation a span.sf-sub-indicator {
+display: none;
+}
+.block-type-subtext-navigation li ul.sub-menu {
+position: absolute;
+z-index: 150;
+left: -9999px; /* Hide the dropdowns */
+width: auto;
+}
+.block-type-subtext-navigation li ul.sub-menu li {
+display: block;
+height: auto;
+width: 100%;
+}
+.block-type-subtext-navigation li ul.sub-menu li a { 
+min-width: 175px;
+max-width: 500px;
+width: auto;
+height: auto;
+line-height: 40px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+}
+
+/* Show the drop downs on hover */
+.block-type-subtext-navigation ul.menu li:hover > ul.sub-menu, 
+.block-type-subtext-navigation ul.menu li.sfHover > ul.sub-menu {
+left: auto;
+}
