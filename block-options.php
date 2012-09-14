@@ -2,39 +2,101 @@
 
 /* This class must be included in another file and included later so we don't get an error about HeadwayBlockOptionsAPI class not existing. */
 
-class HeadwaySubtextNavigationBlockOptions extends HeadwayBlockOptionsAPI {
+class HeadwaySubtextBlockOptions extends HeadwayBlockOptionsAPI {
+
+	function modify_arguments($args) {
+		
+		$this->tab_notices['nav-menu-content'] = 'To add items to this navigation menu, go to <a href="' . admin_url('nav-menus.php') . '" target="_blank">WordPress Admin &raquo; Appearance &raquo; Menus</a>.  Then, create a menu and assign it to <em>' . HeadwayBlocksData::get_block_name($args['block_id']) . '</em> in the <strong>Theme Locations</strong> box.';
+		
+	}
 	
 	public $tabs = array(
-		'navigation-content' => 'Content',
+		'nav-menu-content' => 'Content',
+		'search' => 'Search',
 		'home-link' => 'Home Link',
 		'subtext' => 'Subtext',
-		'search' => 'Search',
-		'orientation' => 'Orientation'
+		'orientation' => 'Orientation',
+		'effects' => 'Effects'
 	);
 
 	public $inputs = array(
-		'home-link' => array(
-			'enable-home-link' => array(
+		'search' => array(
+			'enable-nav-search' => array(
 				'type' => 'checkbox',
-				'name' => 'enable-home-link',
-				'label' => 'Enable Home Link',
-				'default' => true
+				'name' => 'enable-nav-search',
+				'label' => 'Enable Navigation Search',
+				'default' => false,
+				'tooltip' => 'If you wish to have a simple search form in the navigation bar, then check this box.  <em><strong>Note:</strong> the search form will not show if the Vertical Navigation option is enabled for this block.</em>'
 			),
+			
+			'nav-search-position' => array(
+				'type' => 'select',
+				'name' => 'nav-search-position',
+				'label' => 'Search Position',
+				'default' => 'right',
+				'options' => array(
+					'left' => 'Left',
+					'right' => 'Right'
+				),
+				'tooltip' => 'If you would like the navigation search input to snap to the left instead of the right, you can use this option.'
+			),
+			
+			'nav-search-position' => array(
+				'type' => 'select',
+				'name' => 'nav-search-position',
+				'label' => 'Search Position',
+				'default' => 'right',
+				'options' => array(
+					'left' => 'Left',
+					'right' => 'Right'),
+			),
+			'nav-search-top-margin' => array(
+				'type' => 'slider',
+				'name' => 'nav-search-top-margin',
+				'label' => 'Search Top Margin',
+				'default' => 12,
+				'slider-min' => -30,
+				'slider-max' => 30,
+				'slider-interval' => 1,
+				'unit' => 'px',
+				'callback' => '
+					id = $(input).attr("block_id");
+					stylesheet.update_rule("#block-" + id + " .nav-search", {"margin-top": $(input).attr("value") + "px"});
+				'
+			),
+			'nav-search-right-margin' => array(
+				'type' => 'slider',
+				'name' => 'nav-search-right-margin',
+				'label' => 'Search Right Margin',
+				'default' => 0,
+				'slider-min' => -30,
+				'slider-max' => 30,
+				'slider-interval' => 1,
+				'unit' => 'px',
+				'callback' => '
+					id = $(input).attr("block_id");
+					stylesheet.update_rule("#block-" + id + " .nav-search", {"margin-right": $(input).attr("value") + "px"});
+				'			
+			)
+		),
+		
+		'home-link' => array(
+			'hide-home-link' => array(
+				'type' => 'checkbox',
+				'name' => 'hide-home-link',
+				'label' => 'Hide Home Link',
+				'default' => false
+			),
+			
 			'home-link-text' => array(
 				'name' => 'home-link-text',
 				'label' => 'Home Link Text',
 				'type' => 'text',
 				'tooltip' => 'If you would like the link to your homepage to say something other than <em>Home</em>, enter it here!',
 				'default' => 'Home'
-			),
-			'home-link-description' => array(
-				'name' => 'home-link-description',
-				'label' => 'Home Link Description',
-				'type' => 'text',
-				'tooltip' => 'This will add a subtext description for the home menu item.',
-				'default' => 'Back home'
 			)
 		),
+		
 		'subtext' => array(
 			'enable-subtext' => array(
 				'type' => 'checkbox',
@@ -66,52 +128,7 @@ class HeadwaySubtextNavigationBlockOptions extends HeadwayBlockOptionsAPI {
 				'
 			)
 		),
-		'search' => array(
-			'enable-nav-search' => array(
-				'type' => 'checkbox',
-				'name' => 'enable-nav-search',
-				'label' => 'Enable Menu Search',
-				'default' => true,
-				'tooltip' => 'If you wish to have a simple search form in the menu bar, then check this box.  <em><strong>Note:</strong> the search form will not show if the Vertical Menu option is enabled for this block.</em>'
-			),
-			'nav-search-position' => array(
-				'type' => 'select',
-				'name' => 'nav-search-position',
-				'label' => 'Search Position',
-				'default' => 'right',
-				'options' => array(
-					'left' => 'Left',
-					'right' => 'Right'),
-			),
-			'nav-search-top-margin' => array(
-				'type' => 'slider',
-				'name' => 'nav-search-top-margin',
-				'label' => 'Search Top Margin',
-				'default' => 12,
-				'slider-min' => -15,
-				'slider-max' => 15,
-				'slider-interval' => 1,
-				'unit' => 'px',
-				'callback' => '
-					id = $(input).attr("block_id");
-					stylesheet.update_rule("#block-" + id + " .nav-search", {"margin-top": $(input).attr("value") + "px"});
-				'
-			),
-			'nav-search-right-margin' => array(
-				'type' => 'slider',
-				'name' => 'nav-search-right-margin',
-				'label' => 'Search Right Margin',
-				'default' => -9,
-				'slider-min' => -15,
-				'slider-max' => 15,
-				'slider-interval' => 1,
-				'unit' => 'px',
-				'callback' => '
-					id = $(input).attr("block_id");
-					stylesheet.update_rule("#block-" + id + " .nav-search", {"margin-right": $(input).attr("value") + "px"});
-				'			
-			),
-		),
+		
 		'orientation' => array(
 			'alignment' => array(
 				'type' => 'select',
@@ -124,21 +141,38 @@ class HeadwaySubtextNavigationBlockOptions extends HeadwayBlockOptionsAPI {
 					'center' => 'Center'
 				)
 			),
+			
 			'vert-nav-box' => array(
 				'type' => 'checkbox',
 				'name' => 'vert-nav-box',
 				'label' => 'Vertical Navigation',
 				'default' => false,
-				'tooltip' => 'Instead of showing menu horizontally, you can make it show vertically.  <em><strong>Note:</strong> You may have to resize the block to make the menu items fit correctly.</em>'
+				'tooltip' => 'Instead of showing navigation horizontally, you can make the navigation show vertically.  <em><strong>Note:</strong> You may have to resize the block to make the navigation items fit correctly.</em>'
+			)
+		),
+
+		'effects' => array(
+			'effect' => array(
+				'type' => 'select',
+				'name' => 'effect',
+				'label' => 'Drop Down Effect',
+				'default' => 'fade',
+				'options' => array(
+					'none' => 'No Effect',
+					'fade' => 'Fade',
+					'slide' => 'Slide'
+				),
+				'tooltip' => 'This is the effect that will be used when the drop downs are shown and hidden.'
+			),
+
+			'hover-intent' => array(
+				'type' => 'checkbox',
+				'name' => 'hover-intent',
+				'label' => 'Hover Intent',
+				'default' => true,
+				'tooltip' => 'Hover Intent makes it so if a navigation item with a drop down is hovered then the drop down will only be shown if the visitor has their mouse over the item for more than a split second.<br /><br />This reduces drop-downs from sporatically showing if the visitor makes fast movements over the navigation.'
 			)
 		)
 	);
-	
-	
-	function modify_arguments($args) {
-		
-		$this->tab_notices['navigation-content'] = 'To add items to this menu, go to <a href="' . admin_url('nav-menus.php') . '" target="_blank">WordPress Admin &raquo; Appearance &raquo; Menus</a>.  Then, create a menu and assign it to <em>' . HeadwayBlocksData::get_block_name($args['block_id']) . '</em> in the <strong>Theme Locations</strong> box.';
-		
-	}
 	
 }
