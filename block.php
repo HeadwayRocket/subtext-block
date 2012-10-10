@@ -6,7 +6,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 	public $id = 'hwr-subtext';
 	
 	public $name = 'Subtext';
-
+	
 	public $options_class = 'HeadwaySubtextBlockOptions';
 
 	public $fixed_height = false;
@@ -21,11 +21,10 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		add_action('init', array(__CLASS__, 'set_options_defaults'));
 	}
 	
+	function init_action($block_id, $block = false) {
 	
-	
-	function init_action($block_id) {
-	
-		$block = HeadwayBlocksData::get_block($block_id);
+		if ( !$block )
+			$block = HeadwayBlocksData::get_block($block_id);
 		$name = HeadwayBlocksData::get_block_name($block) . ' &mdash; ' . 'Layout: ' . HeadwayLayout::get_name($block['layout']);
 		register_nav_menu('subtext_block_' . $block_id, $name);
 		wp_register_script('jquery-hoverintent', headway_url() . '/library/media/js/jquery.hoverintent.js', array('jquery'));
@@ -73,7 +72,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		$alignment = parent::get_setting($block, 'alignment', 'left');
 		$search = parent::get_setting($block, 'enable-nav-search', false);
 		$search_position = parent::get_setting($block, 'nav-search-position', 'right');
-		$assignment_notice = '<div class="alert alert-yellow"><p>No menu has been assigned. To add items to this navigation menu, go to <a href="' . admin_url('nav-menus.php') . '" target="_blank">WordPress Admin &raquo; Appearance &raquo; Menus</a>.  Then, create a menu and assign it to <em>' . HeadwayBlocksData::get_block_name($block) . '</em> in the <strong>Theme Locations</strong> box.</p></div>';
+		$assignment_notice = '<div class="alert alert-yellow"><p>No menu has been assigned. To add items to this subtext navigation menu, go to <a href="' . admin_url('nav-menus.php') . '" target="_blank">WordPress Admin &raquo; Appearance &raquo; Menus</a>.  Then, create a menu and assign it to <em>' . HeadwayBlocksData::get_block_name($block) . '</em> in the <strong>Theme Locations</strong> box.</p></div>';
 		
 		$nav_classes = array();
 		
@@ -135,7 +134,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 	}
 	
 	
-	function dynamic_css($block_id) {
+	function dynamic_css($block_id, $block, $original_block = null) {
 		
 		$block          			= HeadwayBlocksData::get_block($block_id);
 		$block_height   			= HeadwayBlocksData::get_block_height($block);
@@ -173,9 +172,9 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 	function dynamic_js($block_id) {
 		
 		if ( !self::does_menu_have_subs('subtext_block_' . $block_id) )
-			return false;
+			return null;
 		
-		switch ( parent::get_setting($block_id, 'effect', 'fade') ) {
+		switch ( parent::get_setting($block, 'effect', 'fade') ) {
 			case 'none':
 				$animation = '{height:"show"}';
 				$speed = '0';
@@ -237,9 +236,14 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 			'selector' => 'ul.menu li a',
 			'properties' => array('fonts' => array('font-family', 'font-size', 'color', 'font-styling', 'capitalization', 'letter-spacing', 'text-decoration'), 'background', 'borders', 'padding', 'rounded-corners', 'box-shadow', 'text-shadow'),
 			'states' => array(
-				'Selected' => 'ul.menu li.current_page_item a', 
-				'Hover' => 'ul.menu li a:hover', 
-				'Clicked' => 'ul.menu li a:active'
+				'Selected' => 'ul.menu li.current_page_item > a, 
+							   ul.menu li.current_page_parent > a, 
+							   ul.menu li.current_page_ancestor > a, 
+							   ul.menu li.current_page_item > a:hover, 
+							   ul.menu li.current_page_parent > a:hover, 
+							   ul.menu li.current_page_ancestor > a:hover', 
+				'Hover' => 'ul.menu li > a:hover', 
+				'Clicked' => 'ul.menu li > a:active'
 			)
 		));
 		
@@ -257,11 +261,62 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		
 		$this->register_block_element(array(
 			'id' => 'sub-nav-menu',
-			'name' => 'Sub Navigation Menu',
+			'name' => 'Sub Menu',
 			'selector' => 'ul.sub-menu',
 			'properties' => array('background', 'borders', 'padding', 'rounded-corners', 'box-shadow')
 		));
+		$this->register_block_element(array(
+			'id' => 'sub-menu-item',
+			'name' => 'Sub Menu Item',
+			'selector' => 'ul.sub-menu li > a',
+			'properties' => array(
+				'fonts' => array('font-family', 'font-size', 'color', 'font-styling', 'capitalization', 'letter-spacing', 'text-decoration'), 
+				'background', 
+				'borders', 
+				'padding', 
+				'rounded-corners', 
+				'box-shadow', 
+				'text-shadow'
+			),
+			'states' => array(
+				'Selected' => '
+					ul.sub-menu li.current_page_item > a, 
+					ul.sub-menu li.current_page_parent > a, 
+					ul.sub-menu li.current_page_ancestor > a, 
+					ul.sub-menu li.current_page_item > a:hover, 
+					ul.sub-menu li.current_page_parent > a:hover, 
+					ul.sub-menu li.current_page_ancestor > a:hover
+				', 
+				'Hover' => 'ul.sub-menu li > a:hover', 
+				'Clicked' => 'ul.sub-menu li > a:active'
+			),
+			'inherit-location' => 'block-navigation-menu-item'
+		));
+
+	}
+	
+	function set_options_defaults() {
+		$block = self::$block;
+				
+		global $headway_default_element_data;
 		
+		$subtext_blocks = HeadwayBlocksData::get_blocks_by_type('hwr-subtext');
+		
+		if ( !isset($subtext_blocks) || !is_array($subtext_blocks) )
+			return isset($return);
+			
+		$new_headway_default_element_data = array();
+		
+		foreach ($subtext_blocks as $block_id => $layout_id) {
+			
+			$new_headway_default_element_data['block-hwr-subtext-item-subtext'] = array(
+				'properties' => array(
+					'font-size' => '12',
+					'color' => '999999'
+				)
+			);	
+		}
+		$headway_default_element_data = array_merge($headway_default_element_data, $new_headway_default_element_data);
 	}
 	
 
@@ -318,45 +373,6 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		return parent::get_setting($block, 'enable-subtext', true);
 	}
 	
-	function set_options_defaults() {
-		$block = self::$block;
-				
-		global $headway_default_element_data;
-		
-		$subtext_blocks = HeadwayBlocksData::get_blocks_by_type('hwr-subtext');
-		
-		if ( !isset($subtext_blocks) || !is_array($subtext_blocks) )
-			return isset($return);
-			
-		$new_headway_default_element_data = array();
-		
-		foreach ($subtext_blocks as $block_id => $layout_id) {
-			
-			$new_headway_default_element_data['block-hwr-subtext-container'] = array(
-				'properties' => array(
-					'border-top-width' => '1',
-					'border-bottom-width' => '1',
-					'border-color' => 'eeeeee',
-					'border-style' => 'solid'
-				)
-			);		
-			$new_headway_default_element_data['block-hwr-subtext-item'] = array(
-				'properties' => array(
-					'font-size' => '16',
-					'font-family' => 'palatino',
-					'text-decoration' => 'none',
-					'color' => '555555'
-				)
-			);
-			$new_headway_default_element_data['block-hwr-subtext-item-subtext'] = array(
-				'properties' => array(
-					'font-size' => '12',
-					'color' => '999999'
-				)
-			);	
-		}
-		$headway_default_element_data = array_merge($headway_default_element_data, $new_headway_default_element_data);
-	}
 }
 
 class subtext_walker extends Walker_Nav_Menu {
