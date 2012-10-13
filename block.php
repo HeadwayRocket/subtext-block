@@ -51,7 +51,8 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		$enable_subtext = parent::get_setting($block, 'enable-subtext', true);
 		
 		$get_location	  = get_nav_menu_locations();
-		$menu_assignement = $get_location['subtext_block_' . $block['id']];
+		
+		$menu_assignement = isset($get_location['subtext_block_' . $block['id']]) ? $get_location['subtext_block_' . $block['id']] : 0;
 		
 		if (($enable_subtext) && ($menu_assignement != 0)) {
 			return true;
