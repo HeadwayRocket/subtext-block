@@ -40,15 +40,12 @@ class HeadwaySubtextBlockOptions extends HeadwayBlockOptionsAPI {
 				),
 				'tooltip' => 'If you would like the navigation search input to snap to the left instead of the right, you can use this option.'
 			),
-			
-			'nav-search-position' => array(
-				'type' => 'select',
-				'name' => 'nav-search-position',
-				'label' => 'Search Position',
-				'default' => 'right',
-				'options' => array(
-					'left' => 'Left',
-					'right' => 'Right'),
+			'nav-search-placeholder' => array(
+				'type' => 'text',
+				'name' => 'nav-search-placeholder',
+				'label' => 'Search Placeholder',
+				'default' => 'Type to search, then press enter',
+				'tooltip' => 'This will be the text inside the search input telling the visitor how to interact with the search input.'
 			),
 			'nav-search-top-margin' => array(
 				'type' => 'slider',

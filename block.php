@@ -41,7 +41,11 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		
 			$dependencies[] = 'jquery-hoverintent';
 			
-		wp_enqueue_script('headway-superfish', headway_url() . '/library/blocks/core/navigation/js/jquery.superfish.js', $dependencies);
+		if (version_compare('3.4', HEADWAY_VERSION, '>'))
+			wp_enqueue_script('headway-superfish', headway_url() . '/library/blocks/core/navigation/js/jquery.superfish.js', $dependencies);
+		
+		else
+			wp_enqueue_script('headway-superfish', headway_url() . '/library/blocks/navigation/js/jquery.superfish.js', $dependencies);		
 		
 	}
 	
@@ -52,7 +56,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		
 		$get_location	  = get_nav_menu_locations();
 		
-		$menu_assignement = isset($get_location['subtext_block_' . $block['id']]) ? $get_location['subtext_block_' . $block['id']] : 0;
+		$menu_assignement = isset($get_location['subtext_block_' . $block['id']]) ? $get_location['subtext_block_' . $block['id']] : '';
 		
 		if (($enable_subtext) && ($menu_assignement != 0)) {
 			return true;
@@ -121,7 +125,11 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 				if ( $search && !$vertical ) {
 				
 					echo '<div class="nav-search">';
-						echo get_search_form();
+						if (version_compare('3.4', HEADWAY_VERSION, '>'))
+							echo get_search_form();
+						
+						else
+							echo headway_get_search_form(parent::get_setting($block, 'nav-search-placeholder', null));
 					echo '</div>';
 					
 				}
