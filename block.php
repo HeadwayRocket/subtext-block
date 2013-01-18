@@ -155,7 +155,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 
 		if (self::is_menu_assigned($block) == true) {
 			$css .= '#block-'.$block_id.' .nav-horizontal ul.menu { margin: 0; padding: 0; }';
-			$css .= '#block-'.$block_id.' .nav-horizontal ul.menu > li > a { height: 55px; line-height: 1; padding-top: 13px; }';
+			$css .= '#block-'.$block_id.' .nav-horizontal ul.menu > li > a { height: 55px; line-height: 1; }';
 			$css .= '#block-'.$block_id.' ul li a span.subtext { display: block; line-height: 1; margin-top: ' . $subtext_margin . 'px; }';
 		} else {
 			$css .= '
