@@ -335,14 +335,13 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 	}
 	
 	function set_options_defaults() {
-		$block = self::$block;
 				
 		global $headway_default_element_data;
 		
 		$subtext_blocks = HeadwayBlocksData::get_blocks_by_type('hwr-subtext');
 		
 		if ( !isset($subtext_blocks) || !is_array($subtext_blocks) )
-			return isset($return);
+			return;
 			
 		$new_headway_default_element_data = array();
 		
@@ -375,7 +374,10 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 				)
 			);
 		}
+		
 		$headway_default_element_data = array_merge($headway_default_element_data, $new_headway_default_element_data);
+		
+		return;
 	}
 	
 

@@ -4,7 +4,7 @@ Donate link: http://headwayrocket.com/
 Tags: Navigation, menu, subtext
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,9 +46,13 @@ Watch the [Subtext walkthrough video](http://www.youtube.com/watch?v=KUaOBvY-awY
 
 == Changelog ==
 
+= 1.0.3 =
+
+* Performance improvement.
+
 = 1.0.2 =
 
-* Fixed the menu item padding styling issue
+* Fixed the menu item padding styling issue.
 
 = 1.0.1 =
 
