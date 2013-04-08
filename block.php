@@ -240,10 +240,9 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 	
 	function setup_elements() {
 		$subtext = HeadwayBlocksData::get_blocks_by_type('hwr-subtext');
-		$return = '';
 
 		if ( !isset($subtext) || !is_array($subtext) )
-			return $return;
+			return;
 		
 		foreach ($subtext as $block_id => $layout_id) {
 
