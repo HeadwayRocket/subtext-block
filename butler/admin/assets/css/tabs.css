@@ -1,0 +1,131 @@
+/* Tabs
+**************************************************/
+.btr-tabs { 
+	overflow: hidden;
+}
+.btr-tabs,
+.btr-tabs * { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+.btr-tabs [id*="tab"] { 
+	overflow: hidden;
+}
+.js .btr-tabs [id*="tab"] { 
+	display: none;
+}
+
+/* horizontal */
+.btr-tabs .horizontal-tabs { 
+	float: left; 
+	clear: both; 
+	width: 100%; 
+	border-bottom: 1px solid #ddd; 
+	margin-bottom: 20px;
+}
+.btr-tabs .horizontal-tabs li { 
+	float: left; 
+	margin-bottom: -1px;
+}
+.btr-tabs .horizontal-tabs li a { 
+	display: block; 
+	padding: 8px 12px; 
+	margin-right: 2px; 
+	line-height: 20px; 
+	border: 1px solid transparent; 
+	-webkit-border-radius: 4px 4px 0 0; 
+	-moz-border-radius: 4px 4px 0 0; 
+	border-radius: 4px 4px 0 0; 
+	text-decoration: none; 
+	outline: none;
+}
+.btr-tabs .horizontal-tabs li:hover a { 
+	border-color: #eee #eee #ddd; 
+	text-decoration: none; 
+	background-color: #eee; 
+	color: #555;
+}
+.btr-tabs .horizontal-tabs li.active a { 
+	color: #555; 
+	cursor: default; 
+	background-color: #fff; 
+	border: 1px solid #ddd; 
+	border-bottom-color: transparent;
+}
+.btr-tabs .horizontal-panels { 
+	clear: both;
+}
+
+/* vertical */
+.btr-tabs.vertical-layout { 
+	background-color: #f5f5f5;
+}
+.btr-tabs .vertical-tabs { 
+	float: left; 
+	margin: 0; 
+	height: 100%; 
+	width: 180px;
+}
+.btr-tabs .vertical-tabs li { 
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #e9e9e9; 
+	margin-bottom: 0; 
+	position: relative;
+}
+.btr-tabs .vertical-tabs li.first { 
+	border-top: 0;
+}
+.btr-tabs .vertical-tabs li.last { 
+	border-bottom: 0;
+}
+.btr-tabs .vertical-tabs li.active .btr-pointer { 
+	border-color: #ddd; 
+	border-left: 0; 
+	border-bottom: 9px solid transparent; 
+	border-top: 9px solid transparent; 
+	border-right-width: 9px; 
+	border-right-style: solid; 
+	right: -0; 
+	top: 50%; 
+	margin-top: -9px;
+}
+.btr-tabs .vertical-tabs li.active .btr-pointer-inner { 
+	border-color: #fafafa; 
+	border-left: 0; 
+	border-bottom: 8px solid transparent; 
+	border-top: 8px solid transparent; 
+	top: -8px; 
+	right: -10px; 
+	border-right-width: 9px; 
+	border-right-style: solid;
+}
+.btr-tabs .vertical-tabs li a { 
+	display: block; 
+	padding: 15px; 
+	width: 100%; 
+	text-decoration: none; 
+	outline: none;
+}
+.btr-tabs .vertical-tabs li:hover a { 
+	color: #555; 
+	background-color: #fff;
+}
+.btr-tabs .vertical-tabs li.active a { 
+	color: #555; 
+	font-weight: 600; 
+	background-color: transparent;
+}
+.btr-tabs .vertical-panels { 
+	padding: 0 20px 10px; 
+	display: block; 
+	margin-left: 180px; 
+	background-color: #fafafa; 
+	border-left: 1px solid #ddd; 
+	-moz-box-shadow: 0 0 10px -3px #ccc; 
+	-webkit-box-shadow: 0 0 10px -3px #ccc; 
+	box-shadow: 0 0 10px -3px #ccc;
+}
+.btr-tabs .vertical-panels .btr-tabs-panel { 
+	overflow: hidden;
+}

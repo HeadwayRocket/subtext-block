@@ -1,0 +1,6 @@
+= 1.0.2 =
+* Added Register Component call within the framework
+
+= 1.0.1 =
+* Added Settings tab to dashboard
+* Added option to hide/show HeadwayRocket menu in the admin bar

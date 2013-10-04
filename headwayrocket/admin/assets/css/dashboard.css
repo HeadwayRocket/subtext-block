@@ -1,0 +1,139 @@
+/* dashboard
+**************************************************/
+.hwr-dashboard .btr-tabs .horizontal-tabs {
+    margin-top: 5px;
+}
+.hwr-dashboard .hwr-dashboard-title {
+    margin-bottom: 10px;
+    padding-left: 43px;
+    background-position: 0 -92px;
+    background-repeat: no-repeat;
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1),only screen and (min-device-pixel-ratio:2) { 
+	.hwr-dashboard .hwr-dashboard-title {
+		background: transparent url(../images/hwr-sprite@x2.png);
+	    background-size: 23px 158px;
+	    background-position: 0 -68px;
+	    width: 23px;
+	}
+}
+.hwr-dashboard .button-secondary {
+    margin-left: 5px
+}
+.hwr-dashboard a {
+    outline: 0
+}
+.hwr-dashboard h2 .hwr-last-update {
+    font-size: 11px;
+    color: #888;
+    float: right;
+    line-height: 30px;
+}
+.hwr-dashboard .installed-add-ons thead th {
+    width: 25%
+}
+.hwr-dashboard [class*='hwr-version-indicator-'] {
+    float: left;
+    margin: 5px 5px 0 0;
+    height: 7px;
+    width: 7px;
+    background-color: #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.hwr-dashboard .hwr-update-link {
+    font-size: 10px;
+    margin-left: 5px;
+    text-decoration: none;
+    background-color: #e9e9e9;
+    padding: 3px 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.hwr-dashboard .hwr-version-indicator-green {
+    background-color: #5eb303
+}
+.hwr-dashboard .hwr-version-indicator-orange {
+    background-color: #e95800
+}
+
+/* sign-up panel */
+.hwr-dashboard .sign-up p {
+    margin: 0 0 9px;
+    color: #555;
+}
+.hwr-dashboard .sign-up .email {
+    margin: 1px 0 15px;
+    padding: 5px 0 4px 7px;
+    max-width: 44em;
+    width: 100%;
+}
+.hwr-dashboard .sign-up .button {
+    display: block
+}
+
+/* add-ons */
+.hwr-dashboard .hwr-add-ons-title-wrap {
+    float: left;
+    margin: 15px 0 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DDD;
+    width: 100%;
+}
+.hwr-dashboard .hwr-add-ons-title-wrap h3 {
+    float: left;
+    font-size: 20px;
+    padding: 3px 0 0 0;
+}
+.hwr-dashboard .hwr-add-ons-filters {
+    float: left;
+    margin: 1px 0 0 10px;
+}
+.hwr-dashboard .hwr-add-ons-filters a {
+    padding: 0 0 0 6px
+}
+.hwr-dashboard .hwr-add-ons-filters a.active {
+    font-weight: bold;
+    color: #333;
+}
+.hwr-dashboard .hwr-add-ons .button-secondary {
+    margin-top: -2px;
+    float: right;
+}
+.hwr-dashboard .hwr-add-ons .btr-panel-content img {
+    float: left;
+    margin-right:10px;
+    padding: 3px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.hwr-dashboard .hwr-add-ons .btr-panel-content p {
+    margin: 0 0 10px;
+    color: #555;
+}
+.hwr-dashboard .hwr-separator-left {
+    padding-left: 6px;
+    margin-left: 3px;
+    border-left: 1px solid #ccc;
+}
+.hwr-dashboard .hwr-add-ons .btr-panel-content {
+    min-height: 135px;
+    overflow: hidden;
+}
+
+/* responsive helper */
+@media (max-width:1240px) { 
+	.hwr-dashboard .hwr-add-ons li {
+	    width: 50%
+	}
+	.hwr-dashboard .sign-up .button {
+	    display: inline-block
+	}
+}
+@media (max-width:720px) { 
+	.hwr-dashboard .hwr-add-ons li {
+	    width: 100%
+	}
+}
