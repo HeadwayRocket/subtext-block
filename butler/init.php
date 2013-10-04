@@ -4,7 +4,7 @@
 * @author    ThemeButler http://themebulter.com
 */
 
-$version = '1.0.1';
+$version = '1.0.2';
 $component = 'butler';
 $path = trailingslashit(dirname(__FILE__));
 $butler_versions = get_option('butler_versions');

@@ -48,7 +48,7 @@ Watch the [Subtext walkthrough video](http://www.youtube.com/watch?v=KUaOBvY-awY
 
 = 1.1.0 =
 * Added HeadwayRocket framework version 1.0.2
-* Added Butler framework version 1.0.1
+* Added Butler framework version 1.0.2
 
 = 1.0.3 =
 * Performance improvement.
