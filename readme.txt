@@ -4,7 +4,7 @@ Donate link: http://headwayrocket.com/
 Tags: Navigation, menu, subtext
 Requires at least: 3.4.2
 Tested up to: 3.4.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ Watch the [Subtext walkthrough video](http://www.youtube.com/watch?v=KUaOBvY-awY
 
 
 == Changelog ==
+
+= 1.1.1 =
+* Updated HeadwayRocket framework to version 1.0.3 (fixed dashboard on retina).
 
 = 1.1.0 =
 * Added HeadwayRocket framework version 1.0.2

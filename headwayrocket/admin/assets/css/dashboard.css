@@ -11,10 +11,9 @@
 }
 @media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1),only screen and (min-device-pixel-ratio:2) { 
 	.hwr-dashboard .hwr-dashboard-title {
-		background: transparent url(../images/hwr-sprite@x2.png);
 	    background-size: 23px 158px;
-	    background-position: 0 -68px;
-	    width: 23px;
+	    background-position: 0 -63px;
+	    padding-left: 30px;
 	}
 }
 .hwr-dashboard .button-secondary {

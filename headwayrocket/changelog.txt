@@ -1,3 +1,6 @@
+= 1.0.3 =
+* Fixed dashboard on retina
+
 = 1.0.2 =
 * Added Register Component call within the framework
 

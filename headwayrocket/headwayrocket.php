@@ -11,7 +11,7 @@ if ( !defined('BUTLER_VERSION') )
 do_action('butler_load_dependencies', array('register' => 'global'));
 
 $component = array(
-	'version' => '1.0.2',
+	'version' => '1.0.3',
 	'id' => 'headwayrocket',
 	'path' => trailingslashit(dirname(__FILE__))
 );
