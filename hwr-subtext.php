@@ -3,13 +3,13 @@
 Plugin Name: Headway Subtext Block
 Plugin URI: http://www.headwayrocket.com/subtext
 Description: A subtext block for Headway that makes it easy to add subtext to your WordPress menu items.
-Version: 1.1.1
+Version: 1.2.0
 Author: HeadwayRocket
 Author URI: http://www.headwayrocket.com
 License: GNU GPL v2
 */
  
-define('HWR_SUBTEXT_VERSION', '1.1.1');
+define('HWR_SUBTEXT_VERSION', '1.2.0');
 define('HWR_SUBTEXT_PATH', plugin_dir_path(__FILE__));
 define('HWR_SUBTEXT_URL', plugin_dir_url(__FILE__));
 
@@ -24,6 +24,7 @@ function subtext_block() {
 		return;
 	require_once 'block.php';
 	require_once 'block-options.php';
+	require_once 'maintenance.php';
 	return headway_register_block('HeadwaySubtextBlock', plugins_url(false, __FILE__));
 
 }

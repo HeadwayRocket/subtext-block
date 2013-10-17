@@ -2,9 +2,8 @@
 Contributors: HeadwayRocket
 Donate link: http://headwayrocket.com/
 Tags: Navigation, menu, subtext
-Requires at least: 3.4.2
-Tested up to: 3.4.2
-Stable tag: 1.1.1
+Requires at least: 3.4.8
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,7 +43,17 @@ Once you have installed the plugin, follow these steps:
 Watch the [Subtext walkthrough video](http://www.youtube.com/watch?v=KUaOBvY-awY&feature=plcp) to see how to add subtext to your menu items
 
 
+== Upgrade Notice ==
+
+= 1.2.0 =
+* As any major update but especially for this one, make sure you backup your site before updating the block. Once you are done updating, make sure all your features block instances styling are looking good.
+
+
 == Changelog ==
+
+= 1.2.0 =
+* Updated block instances to use the Headway styling instances.
+* Database maintenance.
 
 = 1.1.1 =
 * Updated HeadwayRocket framework to version 1.0.3 (fixed dashboard on retina).
