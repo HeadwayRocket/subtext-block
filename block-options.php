@@ -1,7 +1,5 @@
 <?php
 
-/* This class must be included in another file and included later so we don't get an error about HeadwayBlockOptionsAPI class not existing. */
-
 class HeadwaySubtextBlockOptions extends HeadwayBlockOptionsAPI {
 
 	function modify_arguments($args) {

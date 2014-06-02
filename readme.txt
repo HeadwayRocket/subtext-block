@@ -3,11 +3,11 @@ Contributors: HeadwayRocket
 Donate link: http://headwayrocket.com/
 Tags: Navigation, menu, subtext
 Requires at least: 3.4.8
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Headway core navigation, with addition of subtext on individual menu items
+Headway core navigation, with addition of subtext on individual menu items.
 
 == Description ==
 
@@ -50,6 +50,11 @@ Watch the [Subtext walkthrough video](http://www.youtube.com/watch?v=KUaOBvY-awY
 
 
 == Changelog ==
+
+= 1.2.1 =
+* Removed HeadwayRocket framework.
+* Removed Butler framework.
+* Development discontinued by HeadwayRocket.
 
 = 1.2.0 =
 * Updated block instances to use the Headway styling instances.

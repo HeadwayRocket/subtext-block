@@ -1,6 +1,0 @@
-= 1.0.2 =
-* Fixed tab selector issue.
-
-= 1.0.1 =
-* Moved hooks the classes files and removed hooks.php files.
-* Fixed butler_load_depedencies to prevent having twice the same class loading.

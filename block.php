@@ -17,20 +17,28 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 
 	static public $block = null;
 
+
 	function __construct() {
+
 		add_action('init', array(__CLASS__, 'set_options_defaults'));
+	
 	}
 	
+
 	function init_action($block_id, $block = false) {
 	
 		if ( !$block )
 			$block = HeadwayBlocksData::get_block($block_id);
+
 		$name = HeadwayBlocksData::get_block_name($block) . ' &mdash; ' . 'Layout: ' . HeadwayLayout::get_name($block['layout']);
+		
 		register_nav_menu('subtext_block_' . $block_id, $name);
+		
 		wp_register_script('jquery-hoverintent', headway_url() . '/library/media/js/jquery.hoverintent.js', array('jquery'));
 		
 	}
 	
+
 	function enqueue_action($block_id) {
 	
 		if ( !self::does_menu_have_subs('subtext_block_' . $block_id) )
@@ -49,6 +57,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		
 	}
 	
+
 	function is_menu_assigned($block) {
 		
 		self::$block = $block;
@@ -58,13 +67,13 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		
 		$menu_assignement = isset($get_location['subtext_block_' . $block['id']]) ? $get_location['subtext_block_' . $block['id']] : '';
 		
-		if (($enable_subtext) && ($menu_assignement != 0)) {
+		if ( ($enable_subtext) && ($menu_assignement != 0) )
 			return true;
-		}
 		
 		return false;
 	}
 	
+
 	function content($block) {
 		
 		self::$block = $block;
@@ -94,9 +103,8 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 		$nav_classes = trim(implode(' ', array_unique($nav_classes)));
 		$nav_location = 'subtext_block_' . $block['id'];
 		
-		if (self::is_menu_assigned($block) == false) {
+		if (self::is_menu_assigned($block) == false)
 			echo $assignment_notice;
-		}
 		
 		echo '<div id="nav-' . $block['id'] . '" class="block-type-navigation"><div class="hwr-subtext ' . $nav_classes . '">';
 				
@@ -326,6 +334,7 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 			
 	}
 	
+
 	function set_options_defaults() {
 				
 		global $headway_default_element_data;
@@ -414,13 +423,18 @@ class HeadwaySubtextBlock extends HeadwayBlockAPI {
 	}
 	
 	public static function is_subtext() {
+
 		$block = self::$block;
+
 		return parent::get_setting($block, 'enable-subtext', true);
+	
 	}
 	
 }
 
+
 class subtext_walker extends Walker_Nav_Menu {
+
 	function start_el(&$output, $item, $depth, $args) {
 		global $wp_query;
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -458,4 +472,5 @@ class subtext_walker extends Walker_Nav_Menu {
 		$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		
 	}
+
 }
